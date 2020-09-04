@@ -1,0 +1,30 @@
+{
+  "name": "desafiob2w",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brunoLNascimento/challenge-nodejs-baas"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brunoLNascimento/challenge-nodejs-baas/issues"
+  },
+  "homepage": "https://github.com/brunoLNascimento/challenge-nodejs-baas#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.19.0",
+    "consign": "^0.1.6",
+    "express": "^4.16.4",
+    "express-load": "1.1.15",
+    "express-mongo-db": "^2.0.4",
+    "express-session": "^1.17.0",
+    "mongo": "^0.1.0",
+    "mongod": "^2.0.0",
+    "mongodb": "^2.2.36",
+    "mongoose": "^5.4.7",
+    "mongoose-sequence": "^5.2.2"
+  }
+}
