@@ -12,11 +12,13 @@ const user = new Schema({
 	uf: { type: String, required: true },
 	cidade: { type: String, required: true },
     telefone: { type: Number, required: true },
-    complemento: { type: String, required: true },
+    complemento: { type: String },
 
 	profissao: { type: String, required: true },
 	rendimentos: { type: Number, required: true },
-    nome_empresa: { type: String, required: true }
+    nome_empresa: { type: String },
+    ativo: { type: Boolean, default: true }
+
     
 },{
     collection: "users"
