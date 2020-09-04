@@ -1,6 +1,6 @@
 module.exports = {
     db: {
-        uri: 'mongodb://localhost:27017/desafioB2W',
+        uri: 'mongodb://localhost:27017/baas',
         option : { 
             useNewUrlParser: true,
             useUnifiedTopology: true 
