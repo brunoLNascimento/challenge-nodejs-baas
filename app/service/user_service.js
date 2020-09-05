@@ -66,7 +66,7 @@ module.exports = {
 
     async activeUser (params, user){
         try {
-            if(parseInt(params.cpf) !== user.cpf)
+            if(params.cpf !== user.cpf)
                 throw "Favor verificar o CPF do usúario";
             
             let query = { userId: params.userId, ativo: true };
