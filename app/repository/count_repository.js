@@ -12,6 +12,7 @@ module.exports = {
             throw error.message;
         };
     },
+
     async findCount (query){
         try {
             console.info("Iniciou consulta por conta: " + JSON.stringify(query));
@@ -19,5 +20,15 @@ module.exports = {
         } catch (error) {
             throw error.message;
         }
-    }
+    },
+
+    async find (query, page){
+        try {
+            console.info("Iniciou consulta conta: " + JSON.stringify(query));
+            return await userModel.find(query).limit(config.limit.items).skip(config.limit.items * page).exec();
+        } catch (error) {
+            throw error.message;
+        }
+    },
+
 }

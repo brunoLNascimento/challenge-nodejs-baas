@@ -31,7 +31,27 @@ module.exports = {
             console.log(error);
             throw error;
         }
-    }
+    },
+
+    async findCountBy (params){
+        try {
+            let query;
+            
+            if(params.cpf)
+                query = { cpf: params.cpf , ativo: true };
+            else
+                query = { ativo: true };
+
+            let userFound = await countRepository.find(query, params.page);
+            if(userFound.length)
+                return userFound;
+            else
+                throw "Nenhum resultado encontrado para sua busca!";
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    },
 };
 
 function buildCount(params){
