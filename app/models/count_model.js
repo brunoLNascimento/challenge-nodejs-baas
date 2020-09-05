@@ -7,7 +7,6 @@ const count = new Schema({
     numero_Conta: { type: String, require: true },
     data_criacao: { type: Date, require: true },
     data_exclusao: { type: Date },
-    ativo: { type: String, default: true },
 },{
     collection: "counts"
 });

@@ -1,7 +1,7 @@
 const userService = require("../service/user_service");
 const countService = require("../service/count_service");
 
-exports.saveUser = async function(req, res){
+exports.saveCount = async function(req, res){
     try {
         let findUser = await userService.findUser(req.body);
 
@@ -25,6 +25,5 @@ exports.findCount = async function(req, res){
         let findUser = await countService.findCountBy(findBy);
         return res.status(200).send({message: findUser});
     } catch (error) {
-        return res.status(500).send({message: error});
     }
 }

@@ -51,7 +51,7 @@ module.exports = {
             console.log(error);
             throw error;
         }
-    },
+    }
 };
 
 function buildCount(params){
