@@ -7,23 +7,20 @@ const user = new Schema({
 	cpf: { type: Number, required: true},
 	email: { type: String, required: true },
 	estado_civil: { type: String, required: true },
-    
     endereco: { type: String, required: true },
 	uf: { type: String, required: true },
 	cidade: { type: String, required: true },
     telefone: { type: Number, required: true },
     complemento: { type: String },
-
 	profissao: { type: String, required: true },
 	rendimentos: { type: Number, required: true },
     nome_empresa: { type: String },
-    ativo: { type: Boolean, default: true }
-
+    ativo: { type: Boolean, default: true },
+    numero_conta: { type: Number },
     
 },{
     collection: "users"
 });
-
 
 user.plugin(autoincrement, {inc_field: 'userId'}).set('toJSON', {
          transform: function (doc, ret) {
