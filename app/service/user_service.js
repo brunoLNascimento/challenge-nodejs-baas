@@ -43,6 +43,43 @@ module.exports = {
             throw error;
         }
     },
+
+    async findInactiveUser (params){
+        try {
+            let query;
+            
+            if(params.userId)
+                query = { userId : params.userId, ativo: false };
+            else
+                query = { ativo: false };
+
+            let userFound = await userRepository.find(query, params.page);
+            if(userFound.length)
+                return userFound;
+            else
+                throw "Nenhum resultado encontrado para sua busca!";
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    },
+
+    async activeUser (params, user){
+        try {
+            if(parseInt(params.cpf) !== user.cpf)
+                throw "Favor verificar o CPF do usúario";
+            
+            let query = { userId: params.userId, ativo: true };
+            let userFound = await userRepository.activeUser(query);
+            if(userFound.ativo)
+                return "Usuário ativado com sucesso!";
+            else
+                throw "Nenhum resultado encontrado para sua busca!";
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    },
     
     async saveUser (params){
         try {
