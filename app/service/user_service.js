@@ -6,52 +6,75 @@ module.exports = {
     
     async findUser (params){
         try {
-            let query
+            let query;
 
             if(params.cpf)
-               query = { cpf : params.cpf }
+               query = { cpf : params.cpf };
             else 
-               query = { userId : parseInt(params.userId) , ativo: true}            
+               query = { userId : parseInt(params.userId) , ativo: true };
 
-            let userFound = await userRepository.findUser(query)
-            console.log(userFound)
-            return userFound
+            let userFound = await userRepository.findUser(query);
+            console.log(userFound);
+            return userFound;
         } catch (error) {
-            console.log(error)
-            throw error
+            console.log(error);
+            throw error;
+        }
+    },
+
+    async findUserBy (params){
+        try {
+            let query;
+            
+            if(params.userId)
+                query = { userId : parseInt(params.userId) , ativo: true };
+            else if(params.userName)
+                query = { nome : { $regex : `.*${ params.userName }.*`, $options:  "si"} , ativo: true };
+            else
+                query = { ativo: true };
+
+            let userFound = await userRepository.find(query, params.page);
+            if(userFound.length)
+                return userFound;
+            else
+                throw "Nenhum resultado encontrado para sua busca!";
+        } catch (error) {
+            console.log(error);
+            throw error;
         }
     },
     
     async saveUser (params){
         try {
-            let build = buildUser(params)
-            return await userRepository.saveUser(build)
+            let build = buildUser(params);
+            return await userRepository.saveUser(build);
         } catch (error) {
-            throw error
+            throw error;
         }
     },
 
     async deleteUser (userId){
         try {
-            let query = {userId : parseInt(userId), ativo: false} 
-            let deleted = await userRepository.deleteUser(query)
+            let query = {userId : parseInt(userId), ativo: false };
+            let deleted = await userRepository.deleteUser(query);
             if(!deleted.ativo)
-                return "Usuário deletado com sucesso"
+                return "Usuário deletado com sucesso";
             else
-                throw "Erro ao deletar usuário"
+                throw "Erro ao deletar usuário";
 
         } catch (error) {
-            throw error
+            throw error;
         }
     }
 }
 
 
 function buildUser(params){
-    let { nome, cpf, email, estado_civil, endereco, uf, cidade, telefone, complemento, profissao, rendimentos, nome_empresa } = params
+    let { nome, cpf, email, estado_civil, endereco, uf, cidade, telefone, complemento, profissao, rendimentos, nome_empresa } = params;
 
     if(!nome || !cpf || !email || !estado_civil || !endereco || !uf || !cidade || !telefone || !profissao || !rendimentos){
-        throw "Todos os campos são obrigatórios!"}
+        throw "Todos os campos são obrigatórios!";
+    }
 
     let user = new userModel({ 
         nome: nome,
@@ -68,5 +91,5 @@ function buildUser(params){
         nome_empresa:  nome_empresa
     })
     
-    return user
+    return user;
 }
