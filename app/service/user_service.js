@@ -14,7 +14,6 @@ module.exports = {
                query = { userId : parseInt(params.userId) , ativo: true };
 
             let userFound = await userRepository.findUser(query);
-            console.log(userFound);
             return userFound;
         } catch (error) {
             console.log(error);

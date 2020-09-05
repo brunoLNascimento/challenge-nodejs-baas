@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const userModel = mongoose.model("User")
 const config = require('../config/dataBase')
-const { saveUser } = require('../service/user_service')
 
 module.exports = {
     
