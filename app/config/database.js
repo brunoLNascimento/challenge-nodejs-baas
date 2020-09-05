@@ -8,7 +8,6 @@ module.exports = {
     },
 
     limit: {
-        items: 10,
-        page: 0
+        items: 10
     }
 };
