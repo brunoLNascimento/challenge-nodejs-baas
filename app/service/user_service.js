@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
-const userRepository = require("../repository/user_repository")
-const userModel = mongoose.model("User")
+const mongoose = require('mongoose');
+const userRepository = require("../repository/user_repository");
+const userModel = mongoose.model("User");
 
 module.exports = {
     
@@ -14,7 +14,6 @@ module.exports = {
                query = { userId : parseInt(params.userId) , ativo: true };
 
             let userFound = await userRepository.findUser(query);
-            console.log(userFound);
             return userFound;
         } catch (error) {
             console.log(error);
@@ -66,7 +65,7 @@ module.exports = {
 
     async activeUser (params, user){
         try {
-            if(parseInt(params.cpf) !== user.cpf)
+            if(params.cpf !== user.cpf)
                 throw "Favor verificar o CPF do usúario";
             
             let query = { userId: params.userId, ativo: true };

@@ -4,26 +4,23 @@ const mongoose = require('mongoose'),
 
 const user = new Schema({
     nome: { type: String, required: true },    
-	cpf: { type: Number, required: true},
+	cpf: { type: String, required: true},
 	email: { type: String, required: true },
 	estado_civil: { type: String, required: true },
-    
     endereco: { type: String, required: true },
 	uf: { type: String, required: true },
 	cidade: { type: String, required: true },
-    telefone: { type: Number, required: true },
+    telefone: { type: String, required: true },
     complemento: { type: String },
-
 	profissao: { type: String, required: true },
 	rendimentos: { type: Number, required: true },
     nome_empresa: { type: String },
-    ativo: { type: Boolean, default: true }
-
+    ativo: { type: Boolean, default: true },
+    numero_conta: { type: Number },
     
 },{
     collection: "users"
 });
-
 
 user.plugin(autoincrement, {inc_field: 'userId'}).set('toJSON', {
          transform: function (doc, ret) {
