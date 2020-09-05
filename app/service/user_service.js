@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
-const userRepository = require("../repository/user_repository")
-const userModel = mongoose.model("User")
+const mongoose = require('mongoose');
+const userRepository = require("../repository/user_repository");
+const userModel = mongoose.model("User");
 
 module.exports = {
     
