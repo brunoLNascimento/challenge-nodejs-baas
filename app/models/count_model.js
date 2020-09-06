@@ -6,7 +6,6 @@ const count = new Schema({
 	cpf: { type: String, required: true},
     numero_Conta: { type: String, require: true },
     data_criacao: { type: Date, require: true },
-    data_exclusao: { type: Date },
 },{
     collection: "counts"
 });
