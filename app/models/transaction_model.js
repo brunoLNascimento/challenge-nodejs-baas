@@ -1,9 +1,10 @@
 const mongoose = require('mongoose'),
-    Schema = mongoose.Schema
+    Schema = mongoose.Schema,
+    autoincrement = require('mongoose-sequence')(mongoose)
 
 const transaction = new Schema({
     userId: { type: String, required: true },    
-    data_transacao: { type: Date, require: true },
+    data_transacao: { type: String, require: true },
     valor_anterior: { type: Number, require: true, default: 0},
     valor_depositado: { type: Number },
     valor_total: { type: Number }
@@ -11,7 +12,8 @@ const transaction = new Schema({
     collection: "transactions"
 });
 
-transaction.set('toJSON', {
+transaction.plugin(autoincrement, {inc_field: 'transactionId'}).set('toJSON', {
+
          transform: function (doc, ret) {
             delete ret._id
             delete ret.__v

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const transactionModel = mongoose.model("Count");
+const transactionModel = mongoose.model("Transaction");
 const transactionRepository = require("../repository/transaction_repository");
 const moment = require('moment')
 
@@ -20,11 +20,11 @@ module.exports = {
             let transaction = buildTransaction(params, dadostransaction);
             return await transactionRepository.saveTransaction(transaction);
         } catch (error) {
-            throw error.message;
+            throw error ? error.message : error;
         }
     },
 
-    async findCount(params){
+    async transaction(params){
         try {
             let query;
 
@@ -33,11 +33,7 @@ module.exports = {
             else 
                 query = { };
 
-            let userFound = await countRepository.findCount(query);
-            if(userFound)
-                throw "Usuário já possui conta"
-
-            return userFound;
+            return await transactionRepository.find(query, params.page);;
         } catch (error) {
             console.log(error);
             throw error;
@@ -48,19 +44,19 @@ module.exports = {
 
 function buildTransaction(params, valorAnterior){
     if(valorAnterior)
-        if(params.userId !== valorAnterior.userId)
+        if(params.userId !== parseInt(valorAnterior.userId))
             throw "Error! Verifique os dados!";
     
     let somaValorAnterior = valorAnterior ? valorAnterior.valor_total : 0;
     let valorTotal = valorAnterior ? parseFloat(valorAnterior.valor_total + params.valorDepositado) : params.valorDepositado; 
 
-    let transaction = new transactionModel({ 
+    let paramTransaction = new transactionModel({ 
         userId: params.userId,    
-        data_transacao: moment().utc().format("YYYY/MM/DD HH:mm:SS"),
+        data_transacao: moment().utc(0300).format("YYYY/MM/DD HH:mm:ss"),
         valor_anterior: somaValorAnterior,
         valor_depositado: params.valorDepositado,
         valor_total: valorTotal 
     })
 
-    return transaction;
+    return paramTransaction;
 }
