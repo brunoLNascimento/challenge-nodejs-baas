@@ -7,7 +7,8 @@ const transaction = new Schema({
     data_transacao: { type: String, require: true },
     valor_anterior: { type: Number, require: true, default: 0},
     valor_depositado: { type: Number },
-    valor_total: { type: Number },   
+    valor_total: { type: Number },  
+    valor_saque: { type: Number } 
 },{
     collection: "transactions"
 });
