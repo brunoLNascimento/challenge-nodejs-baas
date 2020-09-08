@@ -2,11 +2,11 @@ const mongoose = require('mongoose'),
     Schema = mongoose.Schema
 
 const count = new Schema({
-    userId: { type: String, required: true },    
+    userId: { type: Number, required: true },    
 	cpf: { type: String, required: true},
     numero_Conta: { type: String, require: true },
     data_criacao: { type: Date, require: true },
-    data_exclusao: { type: Date },
+    
 },{
     collection: "counts"
 });

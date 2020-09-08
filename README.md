@@ -33,8 +33,8 @@ _É de suma importancia que você leia até o final antes de começar a fazer o 
 
 ### Regras do BaaS
 
-- Deve conter registro de pessoas;
-- Deve conter uma listagem de pessoas;
+- Deve conter registro de pessoas;-
+- Deve conter uma listagem de pessoas;-
 - Deve conter um EndPoint de detalhes da pessoa;
 - Deve conter envio de algum documento referente a pessoa;
 - Deve conter registro de contas (vinculada a uma única pessoa);

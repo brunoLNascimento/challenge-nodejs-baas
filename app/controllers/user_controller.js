@@ -63,3 +63,12 @@ exports.activeUser = async function(req, res){
     }
 }
 
+exports.detailUser = async function(req, res){
+    try {
+        let params = req.params;
+        let findUser = await service.findDetailUser(params);
+        return res.status(200).send({message: findUser});
+    } catch (error) {
+        return res.status(500).send({message: error});
+    }
+}

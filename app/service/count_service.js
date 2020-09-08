@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const countModel = mongoose.model("Count");
 const countRepository = require("../repository/count_repository");
 const moment = require('moment')
+
 module.exports = {
 
     async createCount(params){
@@ -18,9 +19,9 @@ module.exports = {
             let query;
 
             if(params.cpf)
-                query = { cpf : params.cpf , ativo: true };
+                query = { cpf : params.cpf };
             else 
-                query = { ativo: true };
+                query = { };
 
             let userFound = await countRepository.findCount(query);
             if(userFound)

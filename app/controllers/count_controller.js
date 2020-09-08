@@ -25,5 +25,6 @@ exports.findCount = async function(req, res){
         let findUser = await countService.findCountBy(findBy);
         return res.status(200).send({message: findUser});
     } catch (error) {
+        return res.status(500).send({message: error});
     }
 }

@@ -7,6 +7,7 @@ module.exports = function(server) {
 	server.get('/findUserName/:page/:userName?', user.findUser)
 	server.get('/findInactive/:page/:userId?', user.findInactiveUser)
 	server.patch('/activeUser/:userId/:cpf', user.activeUser)
+	server.get('/detailUser/:userId?', user.detailUser)
 
 
 
