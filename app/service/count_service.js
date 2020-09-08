@@ -20,14 +20,12 @@ module.exports = {
 
             if(params.cpf)
                 query = { cpf : params.cpf };
+            else if(params.userId)
+                query = { userId: params.userId };
             else 
                 query = { };
 
-            let userFound = await countRepository.findCount(query);
-            if(userFound)
-                throw "Usuário já possui conta"
-
-            return userFound;
+            return await countRepository.findCount(query);
         } catch (error) {
             console.log(error);
             throw error;
@@ -39,9 +37,11 @@ module.exports = {
             let query;
             
             if(params.cpf)
-                query = { cpf: params.cpf , ativo: true };
+                query = { cpf: params.cpf };
+            else if( params.userId)
+                query = { userId: params.userId };
             else
-                query = { ativo: true };
+                query = { };
 
             let userFound = await countRepository.find(query, params.page);
             if(userFound.length)

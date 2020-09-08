@@ -57,7 +57,7 @@ module.exports = {
             let detail = {};
             detail.user = await userModel.find(query).exec()
             detail.count = await countModel.find(query).exec()
-            detail.transaction = await transactionModel.find(query).exec()
+            detail.transaction = await transactionModel.find(query).sort({ 'transactionId': "desc" }).exec()
             return  detail
         } catch (error) {
             throw error.message

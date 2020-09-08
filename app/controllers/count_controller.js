@@ -11,7 +11,10 @@ exports.saveCount = async function(req, res){
         if(findUser.cpf !== req.body.cpf || findUser.userId !== req.body.userId)
             throw "Error! Favor verificar dados!";
 
-        await countService.findCount(req.body);
+        let foundCount = await countService.findCount(req.body);
+        if(foundCount)
+            throw "Usuário já possui conta!"
+
         let saved = await countService.createCount(req.body);
         return res.status(200).send({message:saved});
     } catch (error) {
