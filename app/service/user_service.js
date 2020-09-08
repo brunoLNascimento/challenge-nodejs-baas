@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
-const userRepository = require("../repository/user_repository");
 const userModel = mongoose.model("User");
+const userRepository = require("../repository/user_repository");
+const jwt = require("jsonwebtoken")
+const config = require("../config/database")
 
 module.exports = {
     
@@ -16,8 +18,7 @@ module.exports = {
             let userFound = await userRepository.findUser(query);
             return userFound;
         } catch (error) {
-            console.log(error);
-            throw error;
+            throw error.message ? error.message : error;
         }
     },
 
@@ -38,8 +39,7 @@ module.exports = {
             else
                 throw "Nenhum resultado encontrado para sua busca!";
         } catch (error) {
-            console.log(error);
-            throw error;
+            throw error.message ? error.message : error;
         }
     },
 
@@ -58,8 +58,7 @@ module.exports = {
             else
                 throw "Nenhum resultado encontrado para sua busca!";
         } catch (error) {
-            console.log(error);
-            throw error;
+            throw error.message ? error.message : error;
         }
     },
 
@@ -75,8 +74,7 @@ module.exports = {
             else
                 throw "Nenhum resultado encontrado para sua busca!";
         } catch (error) {
-            console.log(error);
-            throw error;
+            throw error.message ? error.message : error;
         }
     },
     
@@ -85,7 +83,7 @@ module.exports = {
             let build = buildUser(params);
             return await userRepository.saveUser(build);
         } catch (error) {
-            throw error;
+            throw error.message ? error.message : error;
         }
     },
 
@@ -99,7 +97,7 @@ module.exports = {
                 throw "Erro ao deletar usuário";
 
         } catch (error) {
-            throw error;
+            throw error.message ? error.message : error;
         }
     },
 
@@ -127,6 +125,8 @@ function buildUser(params){
         throw "Todos os campos são obrigatórios!";
     }
 
+    let token = jwt.sign({ secret: config.secret} , email);
+
     let user = new userModel({ 
         nome: nome,
         cpf: cpf,
@@ -139,7 +139,8 @@ function buildUser(params){
         complemento: complemento,
         profissao: profissao,
         rendimentos: rendimentos,
-        nome_empresa:  nome_empresa
+        nome_empresa:  nome_empresa,
+        token: token
     })
     
     return user;

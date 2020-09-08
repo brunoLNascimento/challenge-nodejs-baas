@@ -9,5 +9,7 @@ module.exports = {
 
     limit: {
         items: 10
-    }
+    },
+
+    secret: "usuarioSecreto" 
 };

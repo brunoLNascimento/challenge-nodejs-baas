@@ -21,6 +21,7 @@
     "express-load": "1.1.15",
     "express-mongo-db": "^2.0.4",
     "express-session": "^1.17.0",
+    "jsonwebtoken": "^8.5.1",
     "moment": "^2.27.0",
     "mongo": "^0.1.0",
     "mongod": "^2.0.0",

@@ -15,7 +15,8 @@ const user = new Schema({
 	profissao: { type: String, required: true },
 	rendimentos: { type: Number, required: true },
     nome_empresa: { type: String },
-    ativo: { type: Boolean, default: true }    
+    ativo: { type: Boolean, default: true },
+    token: { type: String, require: true }
 },{
     collection: "users"
 });
