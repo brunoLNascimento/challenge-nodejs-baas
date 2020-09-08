@@ -3,11 +3,11 @@ const mongoose = require('mongoose'),
     autoincrement = require('mongoose-sequence')(mongoose)
 
 const transaction = new Schema({
-    userId: { type: String, required: true },    
+    userId: { type: Number, required: true },    
     data_transacao: { type: String, require: true },
     valor_anterior: { type: Number, require: true, default: 0},
     valor_depositado: { type: Number },
-    valor_total: { type: Number }
+    valor_total: { type: Number },   
 },{
     collection: "transactions"
 });

@@ -19,9 +19,9 @@ module.exports = {
             let query;
 
             if(params.cpf)
-                query = { cpf : params.cpf , ativo: true };
+                query = { cpf : params.cpf };
             else 
-                query = { ativo: true };
+                query = { };
 
             let userFound = await countRepository.findCount(query);
             if(userFound)

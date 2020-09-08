@@ -11,7 +11,7 @@ module.exports = {
             if(params.cpf)
                query = { cpf : params.cpf };
             else 
-               query = { userId : parseInt(params.userId) , ativo: true };
+               query = { userId : params.userId , ativo: true };
 
             let userFound = await userRepository.findUser(query);
             return userFound;
@@ -26,7 +26,7 @@ module.exports = {
             let query;
             
             if(params.userId)
-                query = { userId : parseInt(params.userId) , ativo: true };
+                query = { userId : params.userId , ativo: true };
             else if(params.userName)
                 query = { nome : { $regex : `.*${ params.userName }.*`, $options:  "si"} , ativo: true };
             else
@@ -91,7 +91,7 @@ module.exports = {
 
     async deleteUser (userId){
         try {
-            let query = {userId : parseInt(userId), ativo: false };
+            let query = {userId : userId, ativo: false };
             let deleted = await userRepository.deleteUser(query);
             if(!deleted.ativo)
                 return "Usuário deletado com sucesso";
@@ -100,6 +100,21 @@ module.exports = {
 
         } catch (error) {
             throw error;
+        }
+    },
+
+    async findDetailUser (params){
+        try{
+            let query;
+            if(params.userId)
+                query = { userId : params.userId };
+            else    
+                query = { };
+            let teste = await userRepository.findDetails(query);
+            console.log(teste);
+            return teste ;
+        }catch (error){
+            throw error.message ? error.message : error;
         }
     }
 }

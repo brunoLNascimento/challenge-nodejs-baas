@@ -1,6 +1,9 @@
 const mongoose = require('mongoose')
 const userModel = mongoose.model("User")
+const countModel = mongoose.model("Count")
+const transactionModel = mongoose.model("Transaction")
 const config = require('../config/dataBase')
+mongoose.set('debug', true);
 
 module.exports = {
     
@@ -46,6 +49,18 @@ module.exports = {
             return await userModel.findOneAndUpdate({userId: query.userId},query, {new: true}).exec();
         } catch (error) {
             throw error.message;
+        }
+    },
+
+    async findDetails(query){
+        try {
+            let detail = {};
+            detail.user = await userModel.find(query).exec()
+            detail.count = await countModel.find(query).exec()
+            detail.transaction = await transactionModel.find(query).exec()
+            return  detail
+        } catch (error) {
+            throw error.message
         }
     }
 
